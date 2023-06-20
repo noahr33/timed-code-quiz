@@ -4,6 +4,13 @@
     margin: 0 20px;
 }
 
+.timer {
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    font-weight: bold;
+}
+
 .start-page {
     background-color: antiquewhite;
     text-align: center;
@@ -21,6 +28,19 @@ p {
     color: white;
     border-radius: 8px;
     padding: 5px 10px;
+    cursor: pointer;
+}
+
+.questions {
+    background-color: antiquewhite;
+    text-align: center;
+    padding: 5% 10%;
+    margin: 0 10%;
+    background-color: antiquewhite;
+    text-align: center;
+    padding: 5% 10%;
+    margin: 0 10%;
+    display: none;
 }
 
 
