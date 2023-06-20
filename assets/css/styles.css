@@ -1,0 +1,26 @@
+.fixed {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 20px;
+}
+
+.start-page {
+    background-color: antiquewhite;
+    text-align: center;
+    padding: 5% 10%;
+    margin: 0 10%;
+}
+
+p {
+    font-size: 18px;
+}
+
+#start-btn {
+    font-size: 20px;
+    background-color: rgb(148, 6, 187);
+    color: white;
+    border-radius: 8px;
+    padding: 5px 10px;
+}
+
+
