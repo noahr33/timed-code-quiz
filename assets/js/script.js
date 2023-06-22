@@ -4,40 +4,35 @@
 var timeLeft = document.querySelector(".timer")
 var secondsLeft = 60
 
-var answrOne = document.getElementById('answr-1')
-var answrTwo = document.getElementById('answr-2')
-var answrThree = document.getElementById('answr-3')
-var answrFour = document.getElementById('answr-4')
-
-
-var questionOne = {
-    input1: "Red",
-    input2: "Blue",
-    input3: "Green",
-    input4: "Purple"
-}
+var title = document.getElementById('title')
+var answer = document.getElementById('answers')
 
 
 
-function  firstQuestion() {
+var currentQ
+var currentQuestionIndex = 0
+var score = 0
 
-    var questionOne = {
-        input1: "Red",
-        input2: "Blue",
-        input3: "Green",
-        input4: "Purple"
-    }
 
-    answrOne.textContent = questionOne.input1
-    answrTwo.textContent = questionOne.input2
-    answrThree.textContent = questionOne.input3
-    answrFour.textContent = questionOne.input4
-}
+var questions = [
+    {
+        title: "Whats is 1 + 1?",
+        answers: ["3","4","2","1"],
+        correct: "2"
+    },
+    {
+        title: "Whats is red?",
+        answers: ["red","blue","green","yellow"],
+        correct: "red"
+    },
+]
+  
+
 
 
 function startQuiz () {
     document.getElementById('start-quiz').style.display = "none";
-    return questions () , timer ()
+    return quizQuestions () , timer ()
     
 }
 
@@ -54,20 +49,25 @@ function timer () {
 
 }
 
-function questions () {
+function quizQuestions () {
     document.getElementById('questions').style.display = "block";
 
-    firstQuestion()
-
+    var currentQuestion = questions[currentQuestionIndex]
+    title.textContent = currentQuestion.title
+    currentQuestion.answers.forEach(element => {
+        answer.textContent = element
+    });
     
-
-    // for (var i = 0; i < ; i++) {
-        
-    
-    // }
 }
 
+
+
+
+
+
 document.getElementById("start-btn").addEventListener('click', startQuiz)
+
+// var answerClick = document.querySelector('.answer-input').addEventListener('click', )
 
 
 
