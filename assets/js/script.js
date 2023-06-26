@@ -7,12 +7,14 @@ var secondsLeft = 60
 var title = document.getElementById('title')
 var answer = document.getElementById('answers')
 
+const button = document.createElement('button')
+button.textContent = answer
 
 
-var currentQ
 var currentQuestionIndex = 0
 var score = 0
 
+var answrBtn = document.createElement('button')
 
 var questions = [
     {
@@ -27,7 +29,6 @@ var questions = [
     },
 ]
   
-
 
 
 function startQuiz () {
@@ -51,15 +52,26 @@ function timer () {
 
 function quizQuestions () {
     document.getElementById('questions').style.display = "block";
-
+    
+    
     var currentQuestion = questions[currentQuestionIndex]
     title.textContent = currentQuestion.title
-    currentQuestion.answers.forEach(element => {
-        answer.textContent = element
-    });
+    currentQuestion.answers.forEach(function(choice, i) {
+        var answrBtn = document.createElement('button')
+        answrBtn.setAttribute("value", choice)
+        answrBtn.setAttribute("id", "answer-btn")
+        answrBtn.textContent = i + 1 + ". " + choice
+        answer.appendChild(answrBtn)
+        answrBtn.addEventListener('click', questionChoice)
+        
+    })
     
 }
 
+function questionChoice() {
+   
+    console.log("click");
+}
 
 
 
@@ -83,4 +95,4 @@ function endQuiz () {
 }
 // THEN I can save my initials and my score
 
-// window local storage!!!
+// window local storage!!
