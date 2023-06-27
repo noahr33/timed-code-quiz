@@ -6,6 +6,8 @@ var secondsLeft = 60
 
 var title = document.getElementById('title')
 var answer = document.getElementById('answers')
+var highscores = document.querySelector('a')
+highscores.href = highscoresPage
 
 const button = document.createElement('button')
 button.textContent = answer
@@ -28,14 +30,13 @@ var questions = [
         correct: "red"
     },
 ]
-  
-
 
 function startQuiz () {
     document.getElementById('start-quiz').style.display = "none";
     return quizQuestions () , timer ()
     
 }
+
 
 function timer () {
     var timerInterval = setInterval(function() {
@@ -50,11 +51,14 @@ function timer () {
 
 }
 
+var currentQuestion = questions[currentQuestionIndex]
+
+
 function quizQuestions () {
     document.getElementById('questions').style.display = "block";
     
     
-    var currentQuestion = questions[currentQuestionIndex]
+    currentQuestion = questions[currentQuestionIndex]
     title.textContent = currentQuestion.title
     currentQuestion.answers.forEach(function(choice, i) {
         var answrBtn = document.createElement('button')
@@ -62,29 +66,34 @@ function quizQuestions () {
         answrBtn.setAttribute("id", "answer-btn")
         answrBtn.textContent = i + 1 + ". " + choice
         answer.appendChild(answrBtn)
-        answrBtn.addEventListener('click', questionChoice)
-        
-    })
+        answrBtn.addEventListener('click', questionChoice)   
+    })    
+    
     
 }
 
+
 function questionChoice() {
-   
-    console.log("click");
+    if (this.value === currentQuestion.correct) {
+        score += 10
+        currentQuestionIndex++
+        console.log(currentQuestionIndex);
+        
+    } else {
+        secondsLeft -= 10
+        currentQuestionIndex++
+    }   
+    
 }
 
 
+function highscoresPage () {
 
+}
 
 
 document.getElementById("start-btn").addEventListener('click', startQuiz)
 
-// var answerClick = document.querySelector('.answer-input').addEventListener('click', )
-
-
-
-// WHEN I answer a question
-// THEN I am presented with another question
 // WHEN I answer a question incorrectly
 // THEN time is subtracted from the clock
 // WHEN all questions are answered or the timer reaches 0
