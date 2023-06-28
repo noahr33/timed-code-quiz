@@ -59,6 +59,7 @@ function quizQuestions () {
     document.getElementById('questions').style.display = "block";
     
     title.textContent = currentQuestion.title
+    answer.innerHTML = ""
     currentQuestion.answers.forEach(function(choice, i) {
         var answrBtn = document.createElement('button')
         answrBtn.setAttribute("value", choice)
@@ -74,16 +75,13 @@ function quizQuestions () {
 
 function questionChoice() {
     if (this.value !== questions[currentQuestionIndex].correct) {
-        secondsLeft -= 10
-        currentQuestionIndex++
-        console.log(currentQuestionIndex);
-        console.log(score);
-        
+        secondsLeft -= 10  
     } else {
         score += 10
-        currentQuestionIndex++
-        console.log(currentQuestionIndex);
-    }  
+        console.log(score);   
+    } 
+    currentQuestionIndex++
+    console.log(currentQuestionIndex);
     if (currentQuestionIndex === questions.length) {
         endQuiz()
     }   else {
@@ -116,6 +114,7 @@ document.getElementById("start-btn").addEventListener('click', startQuiz)
 // THEN the game is over
 // WHEN the game is over
 function endQuiz () {
+    document.getElementById('questions').style.display = "none";
     console.log("end");
 }
 // THEN I can save my initials and my score
