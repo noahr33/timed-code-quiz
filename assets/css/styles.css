@@ -4,8 +4,13 @@
     margin: 0 20px;
 }
 
-a {
+.highscores {
     font-size: 20px;
+    cursor: pointer;
+}
+
+.highscores:hover {
+    color: rgb(188, 8, 237);
 }
 
 .timer {

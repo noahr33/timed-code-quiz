@@ -6,8 +6,8 @@ var secondsLeft = 60
 
 var title = document.getElementById('title')
 var answer = document.getElementById('answers')
-var highscores = document.querySelector('a')
-highscores.href = highscoresPage
+var highscores = document.querySelector(".highscores")
+highscores.addEventListener('click', highscoresPage)
 
 const button = document.createElement('button')
 button.textContent = answer
@@ -43,9 +43,10 @@ function timer () {
         secondsLeft--
         timeLeft.textContent = "Time: " + secondsLeft
         
-        if(secondsLeft === 0) {
+        if(secondsLeft <= 0) {
             clearInterval(timerInterval)
             endQuiz()
+            timeLeft.textContent = "Time: 0"
         }
     } ,1000)
 
@@ -57,16 +58,14 @@ var currentQuestion = questions[currentQuestionIndex]
 function quizQuestions () {
     document.getElementById('questions').style.display = "block";
     
-    
-    currentQuestion = questions[currentQuestionIndex]
     title.textContent = currentQuestion.title
     currentQuestion.answers.forEach(function(choice, i) {
         var answrBtn = document.createElement('button')
         answrBtn.setAttribute("value", choice)
         answrBtn.setAttribute("id", "answer-btn")
         answrBtn.textContent = i + 1 + ". " + choice
+        answrBtn.onclick = questionChoice
         answer.appendChild(answrBtn)
-        answrBtn.addEventListener('click', questionChoice)   
     })    
     
     
@@ -74,23 +73,40 @@ function quizQuestions () {
 
 
 function questionChoice() {
-    if (this.value === currentQuestion.correct) {
+    if (this.value !== questions[currentQuestionIndex].correct) {
+        secondsLeft -= 10
+        currentQuestionIndex++
+        console.log(currentQuestionIndex);
+        console.log(score);
+        
+    } else {
         score += 10
         currentQuestionIndex++
         console.log(currentQuestionIndex);
-        
-    } else {
-        secondsLeft -= 10
-        currentQuestionIndex++
-    }   
+    }  
+    if (currentQuestionIndex === questions.length) {
+        endQuiz()
+    }   else {
+        quizQuestions()
+    }
     
 }
 
 
 function highscoresPage () {
+    document.getElementById('questions').style.display = "none";
+    document.getElementById('start-quiz').style.display = "none";
 
+    let highscoreList = document.createElement("ul", highWindow())
+    
+    
+
+    
 }
 
+function highWindow () {
+
+}
 
 document.getElementById("start-btn").addEventListener('click', startQuiz)
 
@@ -100,7 +116,7 @@ document.getElementById("start-btn").addEventListener('click', startQuiz)
 // THEN the game is over
 // WHEN the game is over
 function endQuiz () {
-
+    console.log("end");
 }
 // THEN I can save my initials and my score
 
